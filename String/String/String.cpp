@@ -15,3 +15,15 @@ void String::setString(String &s) { this->string = s.getString(); this->mem_allo
 unsigned int String::getMemAlloc() { return this->mem_allocate; }
 
 void String::setMemAlloc(unsigned int mem) { this->mem_allocate = mem; }
+
+String String::strcat(String &s1, String &s2) { return String(s1.getString() + *s2.getString()); }
+
+String String::strcat(char* s1, String &s2) { return String(s1 + *s2.getString()); }
+
+String String::strcat(String &s1, char* s2) { return String(*s1.getString() + s2); }
+
+String String::strcat(char* s1, char* s2) { return String(s1 + *s2); }
+
+void String::strcpy(String &s1, String &s2) { s2 = s1; }
+
+bool String::strcomp(String &s1, String &s2) { return (&s1 == &s2) ? true : false; }
