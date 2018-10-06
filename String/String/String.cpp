@@ -1,6 +1,6 @@
 #include "String.h"
 
-String::String() : string(""), mem_allocate(sizeof(char*)) {}
+String::String() : string(""), mem_allocate(sizeof(char)) {}
 
 String::String(char* s) : string(s), mem_allocate(sizeof(s)) {}
 
@@ -10,7 +10,7 @@ String::~String(){}
 
 char* String::getString() { return this->string; }
 
-void String::setString(String &s) { this->string = s.getString(); this->mem_allocate = s.getMemAlloc(); }
+void String::setString(char* s) { this->string = s; }
 
 unsigned int String::getMemAlloc() { return this->mem_allocate; }
 
@@ -27,3 +27,7 @@ String String::strcat(char* s1, char* s2) { return String(s1 + *s2); }
 void String::strcpy(String &s1, String &s2) { s2 = s1; }
 
 bool String::strcomp(String &s1, String &s2) { return (&s1 == &s2) ? true : false; }
+
+int String::strlen() { return this->mem_allocate / sizeof(char); }
+
+void String::clear() { this->string = ""; this->mem_allocate = sizeof(this->string); }
