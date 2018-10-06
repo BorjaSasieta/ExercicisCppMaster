@@ -16,9 +16,9 @@ public:
 	void setY(int y);
 	void setZ(int z);
 	//altres metodes
-	Vector3 plusVector(Vector3 &a, Vector3 &b);
+	Vector3 plusVector(Vector3 a);
 	void normalize();
-	Vector3 distance(Vector3 &v);
+	Vector3 distance(Vector3 v);
 private:
 	int x = 0;
 	int y = 0;
