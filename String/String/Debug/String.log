@@ -1,2 +1,3 @@
-﻿  String.cpp
-LINK : fatal error LNK1561: se debe definir el punto de entrada
+﻿  Main.cpp
+  String.vcxproj -> D:\Documents\GitHub\ExercicisCppMaster\String\Debug\String.exe
+  String.vcxproj -> D:\Documents\GitHub\ExercicisCppMaster\String\Debug\String.pdb (Partial PDB)

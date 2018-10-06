@@ -1,8 +1,9 @@
 #include "String.h"
+#include <malloc.h>
 
-String::String() : string(""), mem_allocate(sizeof(char)) {}
+String::String(){}
 
-String::String(char* s) : string(s), mem_allocate(sizeof(s)) {}
+String::String(char* s) : string(s), mem_allocate(strlen(s) * sizeof(char)) {}
 
 String::String(String &s) : string(s.getString()), mem_allocate(s.getMemAlloc()) {}
 
@@ -16,18 +17,26 @@ unsigned int String::getMemAlloc() { return this->mem_allocate; }
 
 void String::setMemAlloc(unsigned int mem) { this->mem_allocate = mem; }
 
-String String::strcat(String &s1, String &s2) { return String(s1.getString() + *s2.getString()); }
+void String::strcat(String &s1, String &s2) { this->string = concat(s1.getString(), s2.getString()); this->mem_allocate = s1.getMemAlloc() + s2.getMemAlloc(); }
 
-String String::strcat(char* s1, String &s2) { return String(s1 + *s2.getString()); }
+void String::strcpy(String &s1, String &s2) { s1.setString(s2.getString()); s1.setMemAlloc(s2.getMemAlloc()); }
 
-String String::strcat(String &s1, char* s2) { return String(*s1.getString() + s2); }
-
-String String::strcat(char* s1, char* s2) { return String(s1 + *s2); }
-
-void String::strcpy(String &s1, String &s2) { s2 = s1; }
-
-bool String::strcomp(String &s1, String &s2) { return (&s1 == &s2) ? true : false; }
-
-int String::strlen() { return this->mem_allocate / sizeof(char); }
+bool String::strcomp(String &s1, String &s2) { return (s1.getString() == s2.getString()) ? true : false; }
 
 void String::clear() { this->string = ""; this->mem_allocate = sizeof(this->string); }
+
+int String::length() { return this->mem_allocate; }
+
+int String::strlen(char* s) {
+	int ret = 0;
+	while(*s++) { ret++; }
+	return ret;
+}
+
+char* String::concat(char* a, char* b) {
+	char* ret = (char*)calloc(strlen(a) + strlen(b) + 1, sizeof(char));
+	int cont = 0;
+	while (*a++) { ret[cont] = *(a - 1); cont++; }
+	while (*b++) { ret[cont] = *(b - 1); cont++; }
+	return ret;
+}
