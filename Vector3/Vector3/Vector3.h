@@ -1,4 +1,5 @@
-#pragma once
+#define vector3_h
+#ifdef vector3_h
 class Vector3
 {
 public:
@@ -24,4 +25,4 @@ private:
 	float y = 0.0f;
 	float z = 0.0f;
 };
-
+#endif

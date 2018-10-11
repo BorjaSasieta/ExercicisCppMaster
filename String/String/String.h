@@ -1,4 +1,5 @@
-#pragma once
+#define string_h
+#ifdef string_h
 class String
 {
 public:
@@ -27,4 +28,4 @@ private:
 	int strlen(char* s);
 	char* concat(char* a, char* b);
 };
-
+#endif
