@@ -9,9 +9,9 @@ public:
 	//destructors
 	virtual ~Vector3();
 	//getters y setters
-	int getX();
-	int getY();
-	int getZ();
+	float getX();
+	float getY();
+	float getZ();
 	void setX(int x);
 	void setY(int y);
 	void setZ(int z);
@@ -20,8 +20,8 @@ public:
 	void normalize();
 	Vector3 distance(Vector3 v);
 private:
-	int x = 0;
-	int y = 0;
-	int z = 0;
+	float x = 0.0f;
+	float y = 0.0f;
+	float z = 0.0f;
 };
 
