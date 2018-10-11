@@ -4,7 +4,7 @@ class Vector3
 public:
 	//constructors
 	Vector3();
-	Vector3(int x, int y, int z);
+	Vector3(float x, float y, float z);
 	Vector3(Vector3 &vec3);
 	//destructors
 	virtual ~Vector3();
