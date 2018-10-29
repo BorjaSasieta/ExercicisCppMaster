@@ -3,9 +3,9 @@
 
 String::String(){}
 
-String::String(char* s) : string(s), mem_allocate(strlen(s) * sizeof(char)) {}
+String::String(char* s) : string(s), mem_allocate(strlen(s) + 1 * sizeof(char)) {}
 
-String::String(String &s) : string(s.getString()), mem_allocate(s.getMemAlloc()) {}
+String::String(const String &s) : string(s.string), mem_allocate(s.mem_allocate) {}
 
 String::~String(){}
 
@@ -15,19 +15,17 @@ void String::setString(char* s) { this->string = s; }
 
 unsigned int String::getMemAlloc() { return this->mem_allocate; }
 
-void String::setMemAlloc(unsigned int mem) { this->mem_allocate = mem; }
+void String::strcat(String &s1, String &s2) { this->string = concat(s1.string, s2.string); this->mem_allocate = s1.mem_allocate + s2.mem_allocate; }
 
-void String::strcat(String &s1, String &s2) { this->string = concat(s1.getString(), s2.getString()); this->mem_allocate = s1.getMemAlloc() + s2.getMemAlloc(); }
-
-void String::strcpy(String &s1, String &s2) { s1.setString(s2.getString()); s1.setMemAlloc(s2.getMemAlloc()); }
+void String::strcpy(String &s1, String &s2) { s1.setString((s2.getString())); s1.mem_allocate = (strlen(s1.getString()) + 1 * sizeof(char)); }
 
 bool String::strcomp(String &s1, String &s2) { return (s1.getString() == s2.getString()) ? true : false; }
 
-void String::clear() { this->string = ""; this->mem_allocate = sizeof(this->string); }
+void String::clear() { delete string; this->mem_allocate = 0; }
 
 int String::length() { return this->mem_allocate; }
 
-int String::strlen(char* s) {
+int String::strlen(const char* s) {
 	int ret = 0;
 	while(*s++) { ret++; }
 	return ret;
